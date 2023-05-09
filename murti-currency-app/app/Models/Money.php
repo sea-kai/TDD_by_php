@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Doller
+class Dollar
 {
     /**
      * @var int
@@ -12,6 +12,7 @@ class Doller
 
     public function __consuruct(int $amount)
     {
+        $this->amount = $amount;
     }
 
     /**
