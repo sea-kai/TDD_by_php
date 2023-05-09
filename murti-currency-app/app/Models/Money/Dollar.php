@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Money;
 
 class Dollar
 {
@@ -8,7 +8,7 @@ class Dollar
      * @var int
      * 合計
      */
-    protected $amount;
+    public $amount;
 
     public function __consuruct(int $amount)
     {

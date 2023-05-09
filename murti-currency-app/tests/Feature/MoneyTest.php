@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Models\Dollar;
+use App\Models\Money\Dollar;
 
 use function PHPUnit\Framework\assertEquals;
 
