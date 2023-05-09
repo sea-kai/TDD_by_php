@@ -2,6 +2,8 @@
 
 namespace App\Models\Money;
 
+use Ramsey\Uuid\Type\Integer;
+
 class Dollar
 {
     /**
@@ -10,7 +12,7 @@ class Dollar
      */
     public $amount;
 
-    public function __consuruct(int $amount)
+    public function __construct(int $amount)
     {
         $this->amount = $amount;
     }
@@ -21,5 +23,6 @@ class Dollar
      */
     public function times(int $multipiler)
     {
+        $this->amount *= $multipiler;
     }
 }
