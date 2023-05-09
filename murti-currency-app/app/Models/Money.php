@@ -13,4 +13,12 @@ class Doller
     public function __consuruct(int $amount)
     {
     }
+
+    /**
+     * @param int $multipiler
+     * @return null
+     */
+    public function times(int $multipiler)
+    {
+    }
 }
