@@ -6,12 +6,14 @@ use Tests\TestCase;
 use App\Models\Money\Dollar;
 
 use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertTrue;
 
-/**
- * @test
- */
 class MoneyTest extends TestCase
 {
+    /**
+     * @test
+     * @return null
+     */
     public function test_multiplication()
     {
         $five = new Dollar(5);
@@ -21,5 +23,15 @@ class MoneyTest extends TestCase
 
         $product = $five->times(3);
         assertEquals(15, $product->amount);
+    }
+
+    /**
+     * @test
+     * @return null
+     */
+    public function testEquality()
+    {
+        $dollar = new Dollar(5);
+        assertTrue($dollar->equals(new Dollar(5)));
     }
 }

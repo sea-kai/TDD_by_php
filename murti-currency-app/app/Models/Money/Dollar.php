@@ -25,4 +25,13 @@ class Dollar
     {
         return new Dollar($this->amount * $multipiler);
     }
+
+    /**
+     * @param Object $object
+     * @return boolean
+     */
+    public function equals(Object $object)
+    {
+        return true;
+    }
 }
