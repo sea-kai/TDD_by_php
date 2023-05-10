@@ -19,10 +19,11 @@ class Dollar
 
     /**
      * @param int $multipiler
-     * @return null
+     * @return Dollar
      */
     public function times(int $multipiler)
     {
         $this->amount *= $multipiler;
+        return null;
     }
 }
