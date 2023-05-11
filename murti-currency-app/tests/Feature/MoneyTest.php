@@ -35,6 +35,11 @@ class MoneyTest extends TestCase
         assertTrue($dollar->equals(new Dollar(5)));
 
         assertFalse($dollar->equals(new Dollar(6)));
+
+        $franc = new Franc(5);
+        assertTrue($franc->equals(new Franc(5)));
+
+        assertFalse($franc->equals(new Franc(6)));
     }
 
     /**
