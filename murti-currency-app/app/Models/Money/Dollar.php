@@ -11,7 +11,7 @@ class Dollar
      * @var int
      * 合計
      */
-    public $amount;
+    private $amount;
 
     public function __construct(int $amount)
     {
