@@ -2,14 +2,8 @@
 
 namespace App\Models\Money;
 
-class Dollar
+class Dollar extends Money
 {
-    /**
-     * @var int
-     * 合計
-     */
-    private $amount;
-
     public function __construct(int $amount)
     {
         $this->amount = $amount;
@@ -22,15 +16,5 @@ class Dollar
     public function times(int $multipiler)
     {
         return new Dollar($this->amount * $multipiler);
-    }
-
-    /**
-     * @param Dollar $object
-     * @return boolean
-     */
-    public function equals(Dollar $object)
-    {
-        $dollar = $object;
-        return $this->amount == $dollar->amount;
     }
 }
