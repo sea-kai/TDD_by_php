@@ -2,9 +2,6 @@
 
 namespace App\Models\Money;
 
-use PhpParser\Node\Expr\Cast\Object_;
-use Ramsey\Uuid\Type\Integer;
-
 class Dollar
 {
     /**
