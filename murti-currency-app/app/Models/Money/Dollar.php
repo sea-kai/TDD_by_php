@@ -2,6 +2,7 @@
 
 namespace App\Models\Money;
 
+use PhpParser\Node\Expr\Cast\Object_;
 use Ramsey\Uuid\Type\Integer;
 
 class Dollar
@@ -27,11 +28,12 @@ class Dollar
     }
 
     /**
-     * @param Object $object
+     * @param Dollar $object
      * @return boolean
      */
-    public function equals(Object $object)
+    public function equals(Dollar $object)
     {
-        return true;
+        $dollar = $object;
+        return $this->amount == $dollar->amount;
     }
 }
