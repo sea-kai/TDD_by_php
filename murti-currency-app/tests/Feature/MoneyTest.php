@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\Money\Dollar;
 
 use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertFalse;
 use function PHPUnit\Framework\assertTrue;
 
 class MoneyTest extends TestCase
@@ -33,5 +34,7 @@ class MoneyTest extends TestCase
     {
         $dollar = new Dollar(5);
         assertTrue($dollar->equals(new Dollar(5)));
+
+        assertFalse($dollar->equals(new Dollar(6)));
     }
 }
