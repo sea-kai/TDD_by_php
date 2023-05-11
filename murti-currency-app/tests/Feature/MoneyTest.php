@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Money\Dollar;
+use App\Models\Money\Franc;
 
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertFalse;
@@ -34,5 +35,18 @@ class MoneyTest extends TestCase
         assertTrue($dollar->equals(new Dollar(5)));
 
         assertFalse($dollar->equals(new Dollar(6)));
+    }
+
+    /**
+     * @test
+     * @return null
+     */
+    public function test_franc_multiplication()
+    {
+        $five = new Franc(5);
+
+        assertEquals(new Franc(10), $five->times(2));
+
+        assertEquals(new Franc(15), $five->times(3));
     }
 }
