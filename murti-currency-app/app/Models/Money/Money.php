@@ -2,6 +2,8 @@
 
 namespace App\Models\Money;
 
+use InvalidArgumentException;
+
 class Money
 {
     /**
@@ -11,12 +13,21 @@ class Money
     protected $amount;
 
     /**
-     * @param Money $object
+     * @param object $object
      * @return boolean
      */
-    public function equals(Money $object)
+    public function equals(object $object)
     {
-        $money = $object;
-        return $this->amount == $money->amount;
+        $money = $this->cast($object);
+
+        return $this->amount == $money->amount && $this instanceof $object;
+    }
+
+    public static function cast($obj): self
+    {
+        if (!($obj instanceof self)) {
+            throw new InvalidArgumentException("{$obj} is not instance of CastObject");
+        }
+        return $obj;
     }
 }
