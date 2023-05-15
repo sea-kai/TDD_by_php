@@ -38,6 +38,8 @@ class MoneyTest extends TestCase
         assertTrue((new Franc(5))->equals(new Franc(5)));
 
         assertFalse((new Franc(5))->equals(new Franc(6)));
+
+        assertFalse((new Franc(5))->equals(new Dollar(5)));
     }
 
     /**
