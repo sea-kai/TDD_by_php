@@ -19,7 +19,7 @@ class MoneyTest extends TestCase
      */
     public function test_multiplication()
     {
-        $five = Money::cast((new Money)->dollar(5));
+        $five = Money::dollar(5);
 
         assertEquals(new Dollar(10), $five->times(2));
 
