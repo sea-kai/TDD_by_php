@@ -25,13 +25,6 @@ abstract class Money
         return $this->amount == $money->amount && $this instanceof $object;
     }
 
-    public static function cast($obj): self
-    {
-        if (!($obj instanceof self)) {
-            throw new InvalidArgumentException("{$obj} is not instance of CastObject");
-        }
-        return $obj;
-    }
 
     /**
      * @param int $amount
@@ -40,5 +33,22 @@ abstract class Money
     static function dollar(int $amount)
     {
         return new Dollar($amount);
+    }
+
+    /**
+     * @param int $amount
+     * @return Money
+     */
+    static function franc(int $amount)
+    {
+        return new Franc($amount);
+    }
+
+    public static function cast($obj): self
+    {
+        if (!($obj instanceof self)) {
+            throw new InvalidArgumentException("{$obj} is not instance of CastObject");
+        }
+        return $obj;
     }
 }
