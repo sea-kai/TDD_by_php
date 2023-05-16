@@ -11,7 +11,7 @@ class Dollar extends Money
 
     /**
      * @param int $multipiler
-     * @return Dollar
+     * @return Money
      */
     public function times(int $multipiler)
     {

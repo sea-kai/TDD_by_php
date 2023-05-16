@@ -11,7 +11,7 @@ class Franc extends Money
 
     /**
      * @param int $multipiler
-     * @return Franc
+     * @return Money
      */
     public function times(int $multipiler)
     {
