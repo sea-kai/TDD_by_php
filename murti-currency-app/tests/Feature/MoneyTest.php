@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use App\Models\Money\Money;
 use App\Models\Money\Dollar;
 use App\Models\Money\Franc;
 
@@ -18,7 +19,7 @@ class MoneyTest extends TestCase
      */
     public function test_multiplication()
     {
-        $five = new Dollar(5);
+        $five = Money::cast((new Money)->dollar(5));
 
         assertEquals(new Dollar(10), $five->times(2));
 

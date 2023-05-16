@@ -30,4 +30,13 @@ class Money
         }
         return $obj;
     }
+
+    /**
+     * @param int $amount
+     * @return Dollar
+     */
+    static function dollar(int $amount)
+    {
+        return new Dollar($amount);
+    }
 }
