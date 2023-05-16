@@ -4,13 +4,15 @@ namespace App\Models\Money;
 
 use InvalidArgumentException;
 
-class Money
+abstract class Money
 {
     /**
      * @var int
      * 合計
      */
     protected $amount;
+
+    abstract function times(int $multiplier);
 
     /**
      * @param object $object
