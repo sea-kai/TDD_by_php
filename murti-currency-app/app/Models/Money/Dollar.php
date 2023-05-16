@@ -10,11 +10,11 @@ class Dollar extends Money
     }
 
     /**
-     * @param int $multipiler
+     * @param int $multiplier
      * @return Money
      */
-    public function times(int $multipiler)
+    public function times(int $multiplier)
     {
-        return new Dollar($this->amount * $multipiler);
+        return new Dollar($this->amount * $multiplier);
     }
 }
