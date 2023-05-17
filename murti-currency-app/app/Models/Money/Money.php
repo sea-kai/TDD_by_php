@@ -13,14 +13,29 @@ abstract class Money
     protected $amount;
 
     /**
-     * @return Money
+     * @var string
+     * 貨幣単位
      */
-    abstract function times(int $multiplier);
+    protected $currency;
 
     /**
      * @return string
      */
-    abstract function currency();
+    public function currency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @return Money
+     */
+    abstract function times(int $multiplier);
+
+    public function __construct(int $amount, string $currency)
+    {
+        $this->amount = $amount;
+        $this->currency = $currency;
+    }
 
     /**
      * @param object $object
@@ -40,7 +55,7 @@ abstract class Money
      */
     static function dollar(int $amount)
     {
-        return new Dollar($amount);
+        return new Dollar($amount, 'USD');
     }
 
     /**
@@ -49,7 +64,7 @@ abstract class Money
      */
     static function franc(int $amount)
     {
-        return new Franc($amount);
+        return new Franc($amount, 'CHF');
     }
 
     public static function cast($obj): self
