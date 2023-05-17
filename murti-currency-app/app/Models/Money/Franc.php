@@ -17,4 +17,12 @@ class Franc extends Money
     {
         return new Franc($this->amount * $multiplier);
     }
+
+    /**
+     * @return string
+     */
+    public function currency()
+    {
+        return 'CHF';
+    }
 }

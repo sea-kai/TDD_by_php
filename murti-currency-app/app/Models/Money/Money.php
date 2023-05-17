@@ -12,9 +12,15 @@ abstract class Money
      */
     protected $amount;
 
+    /**
+     * @return Money
+     */
     abstract function times(int $multiplier);
 
-    abstract function currency(): string;
+    /**
+     * @return string
+     */
+    abstract function currency();
 
     /**
      * @param object $object
