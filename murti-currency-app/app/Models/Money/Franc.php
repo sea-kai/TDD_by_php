@@ -4,9 +4,15 @@ namespace App\Models\Money;
 
 class Franc extends Money
 {
+    /**
+     * @var string
+     */
+    private $currency;
+
     public function __construct(int $amount)
     {
         $this->amount = $amount;
+        $this->currency = 'CHF';
     }
 
     /**
@@ -23,6 +29,6 @@ class Franc extends Money
      */
     public function currency()
     {
-        return 'CHF';
+        return $this->currency;
     }
 }

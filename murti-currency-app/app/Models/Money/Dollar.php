@@ -4,9 +4,15 @@ namespace App\Models\Money;
 
 class Dollar extends Money
 {
+    /**
+     * @var string
+     */
+    private $currency;
+
     public function __construct(int $amount)
     {
         $this->amount = $amount;
+        $this->currency = 'USD';
     }
 
     /**
@@ -23,6 +29,6 @@ class Dollar extends Money
      */
     public function currency()
     {
-        return 'USD';
+        return $this->currency;
     }
 }
