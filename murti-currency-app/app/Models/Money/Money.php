@@ -14,6 +14,8 @@ abstract class Money
 
     abstract function times(int $multiplier);
 
+    abstract function currency(): string;
+
     /**
      * @param object $object
      * @return boolean
