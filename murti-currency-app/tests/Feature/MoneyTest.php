@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Money\Money;
+use App\Models\Money\Franc;
 
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertFalse;
@@ -15,7 +16,7 @@ class MoneyTest extends TestCase
      * @test
      * @return null
      */
-    public function test_multiplication()
+    public function testMultiplication()
     {
         $five = Money::dollar(5);
 
@@ -45,7 +46,7 @@ class MoneyTest extends TestCase
      * @test
      * @return null
      */
-    public function test_franc_multiplication()
+    public function testFrancMultiplication()
     {
         $five = Money::franc(5);
 
@@ -58,10 +59,19 @@ class MoneyTest extends TestCase
      * @test
      * @return null
      */
-    public function test_currency()
+    public function testCurrency()
     {
         assertEquals('USD', Money::dollar(1)->currency());
 
         assertEquals('CHF', Money::franc(1)->currency());
+    }
+
+    /**
+     * @test
+     * @return null
+     */
+    public function testDifferentClassEquality()
+    {
+        assertTrue((new Money(10, 'CHF'))->equals(new Franc(10, 'CHF')));
     }
 }
