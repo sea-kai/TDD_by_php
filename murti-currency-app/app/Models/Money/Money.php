@@ -4,7 +4,7 @@ namespace App\Models\Money;
 
 use InvalidArgumentException;
 
-abstract class Money
+class Money
 {
     /**
      * @var int
@@ -19,17 +19,21 @@ abstract class Money
     protected $currency;
 
     /**
+     * @param int $multiplier
+     * @return Money
+     */
+    public function times(int $multiplier)
+    {
+        return new Money($this->amount * $multiplier, $this->currency);
+    }
+
+    /**
      * @return string
      */
     public function currency()
     {
         return $this->currency;
     }
-
-    /**
-     * @return Money
-     */
-    abstract function times(int $multiplier);
 
     public function __construct(int $amount, string $currency)
     {
@@ -45,9 +49,8 @@ abstract class Money
     {
         $money = $this->cast($object);
 
-        return $this->amount == $money->amount && $this instanceof $object;
+        return $this->amount === $money->amount && $this->currency() === $money->currency();
     }
-
 
     /**
      * @param int $amount
@@ -55,7 +58,7 @@ abstract class Money
      */
     static function dollar(int $amount)
     {
-        return new Dollar($amount, 'USD');
+        return new Money($amount, 'USD');
     }
 
     /**
@@ -64,7 +67,7 @@ abstract class Money
      */
     static function franc(int $amount)
     {
-        return new Franc($amount, 'CHF');
+        return new Money($amount, 'CHF');
     }
 
     public static function cast($obj): self
