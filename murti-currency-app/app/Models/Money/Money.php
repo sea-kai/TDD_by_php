@@ -22,7 +22,7 @@ class Money implements Expression
      * @param int $multiplier
      * @return Money
      */
-    public function times(int $multiplier)
+    function times(int $multiplier)
     {
         return new Money($this->amount * $multiplier, $this->currency);
     }
@@ -31,15 +31,24 @@ class Money implements Expression
      * @param Money $addend
      * @return Expression
      */
-    public function plus(Money $addend)
+    function plus(Money $addend)
     {
-        return new Money($this->amount + $addend->amount, $this->currency);
+        return new Sum($this, $addend);
+    }
+
+    /**
+     * @param string $to
+     * @return Money
+     */
+    public function reduce(String $to)
+    {
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function currency()
+    function currency()
     {
         return $this->currency;
     }
@@ -54,7 +63,7 @@ class Money implements Expression
      * @param object $object
      * @return boolean
      */
-    public function equals(object $object)
+    function equals(object $object)
     {
         $money = $this->cast($object);
 
@@ -85,5 +94,10 @@ class Money implements Expression
             throw new InvalidArgumentException("{$obj} is not instance of CastObject");
         }
         return $obj;
+    }
+
+    public function __get($amount)
+    {
+        return $this->$amount;
     }
 }
