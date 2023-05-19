@@ -4,7 +4,7 @@ namespace App\Models\Money;
 
 use InvalidArgumentException;
 
-class Money
+class Money implements Expression
 {
     /**
      * @var int
@@ -29,7 +29,7 @@ class Money
 
     /**
      * @param Money $addend
-     * @return Money
+     * @return Expression
      */
     public function plus(Money $addend)
     {

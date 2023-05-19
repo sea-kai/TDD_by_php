@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Money\Money;
-use App\Models\Money\Franc;
+use App\Models\Money\Bank;
 
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertFalse;
@@ -18,9 +18,14 @@ class MoneyTest extends TestCase
      */
     public function testSimpleAddition()
     {
-        $sum = (Money::dollar(5))->plus(Money::dollar(5));
+        $five = Money::dollar(5);
+        $sum = $five->plus($five);
 
         assertEquals(Money::dollar(10), $sum);
+
+        $reduced = (new Bank())->reduce($sum, 'USD');
+
+        assertEquals(Money::dollar(10), $reduced);
     }
 
     /**
