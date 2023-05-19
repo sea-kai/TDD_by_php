@@ -28,6 +28,15 @@ class Money
     }
 
     /**
+     * @param Money $addend
+     * @return Money
+     */
+    public function plus(Money $addend)
+    {
+        return new Money($this->amount + $addend->amount, $this->currency);
+    }
+
+    /**
      * @return string
      */
     public function currency()
