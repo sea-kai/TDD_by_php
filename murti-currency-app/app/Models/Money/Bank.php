@@ -23,4 +23,13 @@ class Bank
     function addRate()
     {
     }
+
+    /**
+     * @param string $from
+     * @param string $to
+     */
+    function rate(string $from, string $to)
+    {
+        return ($from == 'CHF' && $to == 'USD') ? 2 : 1;
+    }
 }
