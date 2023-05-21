@@ -21,10 +21,11 @@ class Sum implements Expression
     }
 
     /**
+     * @param Bank $bank
      * @param string $to
      * @return Money
      */
-    public function reduce(string $to)
+    public function reduce(Bank $bank, string $to)
     {
         $amount = $this->augend->amount + $this->addend->amount;
         return new Money($amount, $to);
