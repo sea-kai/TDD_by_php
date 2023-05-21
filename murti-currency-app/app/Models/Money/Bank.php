@@ -13,4 +13,14 @@ class Bank
     {
         return $source->reduce($to);
     }
+
+    /**
+     * @param string $from
+     * @param string $to
+     * @param int $rate
+     * @return null
+     */
+    function addRate()
+    {
+    }
 }
