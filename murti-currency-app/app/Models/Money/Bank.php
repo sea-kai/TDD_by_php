@@ -2,8 +2,15 @@
 
 namespace App\Models\Money;
 
+use App\Models\Pair;
+
 class Bank
 {
+    /**
+     * @var array<Pair, int>
+     */
+    private $rates = [];
+
     /**
      * @param Expression $source
      * @param string $to
@@ -20,8 +27,9 @@ class Bank
      * @param int $rate
      * @return null
      */
-    function addRate()
+    function addRate(string $from, string $to, int $rate)
     {
+        array_merge($this->rates, [new Pair($from, $to) => $rate]);
     }
 
     /**
@@ -30,6 +38,9 @@ class Bank
      */
     function rate(string $from, string $to)
     {
-        return ($from == 'CHF' && $to == 'USD') ? 2 : 1;
+        if ($from == $to) {
+            return 1;
+        }
+        return $this->rates[new Pair($from, $to)];
     }
 }

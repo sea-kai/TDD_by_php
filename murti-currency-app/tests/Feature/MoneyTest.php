@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\Money\Money;
 use App\Models\Money\Bank;
 use App\Models\Money\Sum;
+use App\Models\Pair;
 
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertFalse;
@@ -117,5 +118,13 @@ class MoneyTest extends TestCase
         $result = $bank->reduce(Money::franc(2), 'USD');
 
         assertEquals(Money::dollar(1), $result);
+    }
+
+    /**
+     * @test
+     */
+    public function testIdentityRate()
+    {
+        assertEquals(1, (new Bank())->rate('USD', 'USD'));
     }
 }
