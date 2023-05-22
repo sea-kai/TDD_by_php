@@ -3,13 +3,19 @@
 namespace App\Models\Money;
 
 use App\Models\Pair;
+use App\Models\HashMap;
 
 class Bank
 {
     /**
-     * @var array<Pair, int>
+     * @var HashMap
      */
-    private $rates = [];
+    private $rates;
+
+    function __construct()
+    {
+        $this->rates = new HashMap();
+    }
 
     /**
      * @param Expression $source
@@ -29,7 +35,7 @@ class Bank
      */
     function addRate(string $from, string $to, int $rate)
     {
-        array_merge($this->rates, [new Pair($from, $to) => $rate]);
+        $this->rates->put(new Pair($from, $to), $rate);
     }
 
     /**
@@ -41,6 +47,6 @@ class Bank
         if ($from == $to) {
             return 1;
         }
-        return $this->rates[new Pair($from, $to)];
+        return $this->rates->get(new Pair($from, $to));
     }
 }
