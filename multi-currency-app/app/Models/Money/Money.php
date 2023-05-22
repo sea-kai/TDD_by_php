@@ -8,15 +8,17 @@ class Money implements Expression
 {
     /**
      * @var int
+     * @var readonly
      * 合計
      */
-    protected $amount;
+    public $amount;
 
     /**
      * @var string
+     * @var readonly
      * 貨幣単位
      */
-    protected $currency;
+    public $currency;
 
     /**
      * @param int $multiplier
@@ -62,13 +64,11 @@ class Money implements Expression
     }
 
     /**
-     * @param object $object
-     * @return boolean
+     * @param self $money
+     * @return bool
      */
-    function equals(object $object)
+    function equals(self $money): bool
     {
-        $money = $this->cast($object);
-
         return $this->amount === $money->amount && $this->currency() === $money->currency();
     }
 
@@ -76,7 +76,7 @@ class Money implements Expression
      * @param int $amount
      * @return Money
      */
-    static function dollar(int $amount)
+    static function dollar(int $amount): self
     {
         return new Money($amount, 'USD');
     }
@@ -85,7 +85,7 @@ class Money implements Expression
      * @param int $amount
      * @return Money
      */
-    static function franc(int $amount)
+    static function franc(int $amount): self
     {
         return new Money($amount, 'CHF');
     }

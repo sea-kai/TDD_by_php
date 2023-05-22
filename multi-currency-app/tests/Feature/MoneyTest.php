@@ -6,10 +6,10 @@ use Tests\TestCase;
 use App\Models\Money\Money;
 use App\Models\Money\Bank;
 use App\Models\Money\Sum;
-use App\Models\Pair;
 
-use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertSame;
 use function PHPUnit\Framework\assertFalse;
+use function PHPUnit\Framework\assertObjectEquals;
 use function PHPUnit\Framework\assertTrue;
 
 class MoneyTest extends TestCase
@@ -22,9 +22,9 @@ class MoneyTest extends TestCase
     {
         $five = Money::dollar(5);
 
-        assertEquals(Money::dollar(10), $five->times(2));
+        assertObjectEquals(Money::dollar(10), $five->times(2));
 
-        assertEquals(Money::dollar(15), $five->times(3));
+        assertObjectEquals(Money::dollar(15), $five->times(3));
     }
 
     /**
@@ -46,9 +46,9 @@ class MoneyTest extends TestCase
      */
     public function testCurrency()
     {
-        assertEquals('USD', Money::dollar(1)->currency());
+        assertSame('USD', Money::dollar(1)->currency());
 
-        assertEquals('CHF', Money::franc(1)->currency());
+        assertSame('CHF', Money::franc(1)->currency());
     }
 
 
@@ -62,7 +62,7 @@ class MoneyTest extends TestCase
         $sum = $five->plus($five);
         $reduced = (new Bank())->reduce($sum, 'USD');
 
-        assertEquals(Money::dollar(10), $reduced);
+        assertObjectEquals(Money::dollar(10), $reduced);
     }
 
     /**
@@ -75,9 +75,9 @@ class MoneyTest extends TestCase
         $result = $five->plus($five);
         $sum = $result;
 
-        assertEquals($five, $sum->augend);
+        assertObjectEquals($five, $sum->augend);
 
-        assertEquals($five, $sum->addend);
+        assertObjectEquals($five, $sum->addend);
     }
 
 
@@ -91,7 +91,7 @@ class MoneyTest extends TestCase
         $bank = new Bank();
         $result = $bank->reduce($sum, 'USD');
 
-        assertEquals(Money::dollar(7), $result);
+        assertObjectEquals(Money::dollar(7), $result);
     }
 
     /**
@@ -103,7 +103,7 @@ class MoneyTest extends TestCase
         $bank = new Bank();
         $result = $bank->reduce(Money::dollar(1), 'USD');
 
-        assertEquals(Money::dollar(1), $result);
+        assertObjectEquals(Money::dollar(1), $result);
     }
 
     /**
@@ -117,7 +117,7 @@ class MoneyTest extends TestCase
 
         $result = $bank->reduce(Money::franc(2), 'USD');
 
-        assertEquals(Money::dollar(1), $result);
+        assertObjectEquals(Money::dollar(1), $result);
     }
 
     /**
@@ -125,6 +125,6 @@ class MoneyTest extends TestCase
      */
     public function testIdentityRate()
     {
-        assertEquals(1, (new Bank())->rate('USD', 'USD'));
+        assertSame(1, (new Bank())->rate('USD', 'USD'));
     }
 }
