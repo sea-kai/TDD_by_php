@@ -22,9 +22,9 @@ class Money implements Expression
 
     /**
      * @param int $multiplier
-     * @return Money
+     * @return Expression
      */
-    function times(int $multiplier)
+    function times(int $multiplier): Expression
     {
         return new Money($this->amount * $multiplier, $this->currency);
     }
@@ -33,7 +33,7 @@ class Money implements Expression
      * @param Money $addend
      * @return Expression
      */
-    function plus(Money $addend)
+    public function plus(Expression $addend): Expression
     {
         return new Sum($this, $addend);
     }
@@ -43,7 +43,7 @@ class Money implements Expression
      * @param string $to
      * @return Money
      */
-    public function reduce(Bank $bank, String $to)
+    public function reduce(Bank $bank, String $to): Money
     {
         $rate = $bank->rate($this->currency, $to);
         return new Money($this->amount / $rate, $to);

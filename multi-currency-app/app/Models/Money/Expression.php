@@ -10,4 +10,10 @@ interface Expression
      * @return Money
      */
     public function reduce(Bank $bank, String $to);
+
+    /**
+     * @param Exoression $addend
+     * @return Expression
+     */
+    public function plus(Expression $addend): Expression;
 }

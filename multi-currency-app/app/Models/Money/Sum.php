@@ -7,16 +7,16 @@ namespace App\Models\Money;
 class Sum implements Expression
 {
     /**
-     * @var Money
+     * @var Expression
      */
     public $augend;
 
     /**
-     * @var Money
+     * @var Expression
      */
     public $addend;
 
-    public function __construct(Money $augend, Money $addend)
+    public function __construct(Expression $augend, Expression $addend)
     {
         $this->augend = $augend;
         $this->addend = $addend;
@@ -31,5 +31,14 @@ class Sum implements Expression
     {
         $amount = $this->augend->reduce($bank, $to)->amount + $this->addend->reduce($bank, $to)->amount;
         return new Money($amount, $to);
+    }
+
+    /**
+     * @param Exoression $addend
+     * @return Expression
+     */
+    public function plus(Expression $addend): Expression
+    {
+        return null;
     }
 }
