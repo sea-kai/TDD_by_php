@@ -5,6 +5,12 @@ namespace App\Models\Money;
 interface Expression
 {
     /**
+     * @param int $multiplier
+     * @return Expression
+     */
+    public function times(int $multiplier);
+
+    /**
      * @param Bank $bank
      * @param string $to
      * @return Money
@@ -12,7 +18,7 @@ interface Expression
     public function reduce(Bank $bank, String $to);
 
     /**
-     * @param Exoression $addend
+     * @param Expression $addend
      * @return Expression
      */
     public function plus(Expression $addend): Expression;
